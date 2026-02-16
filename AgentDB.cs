@@ -58,8 +58,9 @@ namespace AbzanovGlazki
         {
             get
             {
-                var StartYear = new DateTime(DateTime.Now.Year, 1, 1);
-                return ProductSale.Where(ps => ps.SaleDate >= StartYear).Sum(ps => ps.ProductCount);
+                //var StartYear = new DateTime(DateTime.Now.Year, 1, 1);
+                //return ProductSale.Where(ps => ps.SaleDate >= StartYear).Sum(ps => ps.ProductCount);
+                return ProductSale.Sum(ps => ps.ProductCount);
             }
             
         }
@@ -68,8 +69,16 @@ namespace AbzanovGlazki
         {
             get
             {
-                if (CountProduct >= 0 && CountProduct < 50000)
+                if (CountProduct >= 10 && CountProduct < 50)
                     return 5;
+                if (CountProduct >= 50 && CountProduct < 100)
+                    return 10;
+                if (CountProduct >= 100 && CountProduct < 150)
+                    return 15;
+                if (CountProduct >= 150 && CountProduct < 200)
+                    return 20;
+                if (CountProduct >= 200 && CountProduct < 250)
+                    return 25;
                 else return 0;
             }
         }
