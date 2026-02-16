@@ -55,6 +55,82 @@ namespace AbzanovGlazki
         private void UpdateAgents()
         {
             var currentAgents = AbzanovGlazaEntities.GetContext().AgentDB.ToList();
+
+            if (ComboTypeSort.SelectedIndex == 0 && RButtonUp.IsChecked.Value)
+            {
+                AgentListView.ItemsSource = currentAgents.OrderBy(p => p.Title).ToList();
+                currentAgents = currentAgents.OrderBy(p => p.Title).ToList();
+            }
+            if (ComboTypeSort.SelectedIndex == 0 && RButtonDown.IsChecked.Value)
+            {
+                AgentListView.ItemsSource = currentAgents.OrderByDescending(p => p.Title).ToList();
+                currentAgents = currentAgents.OrderByDescending(p => p.Title).ToList();
+            }
+
+            if (ComboTypeSort.SelectedIndex == 1 && RButtonUp.IsChecked.Value)
+            {
+                AgentListView.ItemsSource = currentAgents.OrderBy(p => p.Discount).ToList();
+                currentAgents = currentAgents.OrderBy(p => p.Discount).ToList();
+            }
+            if (ComboTypeSort.SelectedIndex == 1 && RButtonDown.IsChecked.Value)
+            {
+                AgentListView.ItemsSource = currentAgents.OrderByDescending(p => p.Discount).ToList();
+                currentAgents = currentAgents.OrderByDescending(p => p.Discount).ToList();
+            }
+
+            if (ComboTypeSort.SelectedIndex == 2 && RButtonUp.IsChecked.Value)
+            {
+                AgentListView.ItemsSource = currentAgents.OrderBy(p => p.Priority).ToList();
+                currentAgents = currentAgents.OrderBy(p => p.Priority).ToList();
+            }
+            if (ComboTypeSort.SelectedIndex == 2 && RButtonDown.IsChecked.Value)
+            {
+                AgentListView.ItemsSource = currentAgents.OrderByDescending(p => p.Priority).ToList();
+                currentAgents = currentAgents.OrderByDescending(p => p.Priority).ToList();
+            }
+
+            if(ComboTypeFilt.SelectedIndex == 1)
+            {
+                currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("МФО")).ToList();
+            }
+            if (ComboTypeFilt.SelectedIndex == 2)
+            {
+                currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("ООО")).ToList();
+            }
+            if (ComboTypeFilt.SelectedIndex == 3)
+            {
+                currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("ЗАО")).ToList();
+            }
+            if (ComboTypeFilt.SelectedIndex == 4)
+            {
+                currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("МКК")).ToList();
+            }
+            if (ComboTypeFilt.SelectedIndex == 5)
+            {
+                currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("ОАО")).ToList();
+            }
+            if (ComboTypeFilt.SelectedIndex == 6)
+            {
+                currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("ПАО")).ToList();
+            }
+
+            currentAgents = currentAgents.Where(p => p.Title.ToLower().Contains(TBoxSearch.Text.ToLower()) || p.Email.ToLower().Contains(TBoxSearch.Text.ToLower()) || p.PhoneSearch.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+
+            
+
+            AgentListView.ItemsSource = currentAgents.ToList();
+        }   
+
+        private void RButtonUp_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateAgents();
         }
+
+        private void RButtonDown_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateAgents();
+        }
+
+
     }
 }

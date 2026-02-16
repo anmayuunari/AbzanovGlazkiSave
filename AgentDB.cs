@@ -34,7 +34,18 @@ namespace AbzanovGlazki
         public string Email { get; set; }
         public string Logo { get; set; }
         public int Priority { get; set; }
-        
+
+        public string LogoOut
+        {
+            get
+            {
+                if (Logo == "")
+                {
+                    return "res/picture.png";
+                }
+                return Logo;
+            }
+        }
         public string AgentTypeFull
         {
             get
@@ -45,11 +56,12 @@ namespace AbzanovGlazki
 
         public int CountProduct
         {
-            get 
+            get
             {
-                return ProductSale.Sum(ps => ps.ProductCount);
+                var StartYear = new DateTime(DateTime.Now.Year, 1, 1);
+                return ProductSale.Where(ps => ps.SaleDate >= StartYear).Sum(ps => ps.ProductCount);
             }
-            set { }
+            
         }
 
         public int Discount
@@ -59,6 +71,14 @@ namespace AbzanovGlazki
                 if (CountProduct >= 0 && CountProduct < 50000)
                     return 5;
                 else return 0;
+            }
+        }
+
+        public string PhoneSearch
+        {
+            get
+            {
+                return Phone.Replace("+", "").Replace("-", "").Replace("(", "").Replace(")", "");
             }
         }
 
