@@ -12,7 +12,7 @@ namespace AbzanovGlazki
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class AbzanovGlazaEntities : DbContext
     {
         private static AbzanovGlazaEntities _context;
@@ -29,12 +29,12 @@ namespace AbzanovGlazki
             : base("name=AbzanovGlazaEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<AgentDB> AgentDB { get; set; }
         public virtual DbSet<AgentPriorityHistory> AgentPriorityHistory { get; set; }
         public virtual DbSet<AgentType> AgentType { get; set; }

@@ -22,7 +22,7 @@ namespace AbzanovGlazki
             this.ProductSale = new HashSet<ProductSale>();
             this.Shop = new HashSet<Shop>();
         }
-    
+
         public int ID { get; set; }
         public string Title { get; set; }
         public int AgentTypeID { get; set; }
@@ -62,8 +62,8 @@ namespace AbzanovGlazki
                 //return ProductSale.Where(ps => ps.SaleDate >= StartYear).Sum(ps => ps.ProductCount);
                 return ProductSale.Sum(ps => ps.ProductCount);
             }
-            
-        }   
+
+        }
 
         public int Discount
         {

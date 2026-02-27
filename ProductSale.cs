@@ -11,7 +11,7 @@ namespace AbzanovGlazki
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class ProductSale
     {
         public int ID { get; set; }
@@ -27,7 +27,7 @@ namespace AbzanovGlazki
                 return Product.MinCostForAgent;
             }
         }
-    
+
         public virtual AgentDB AgentDB { get; set; }
         public virtual Product Product { get; set; }
     }

@@ -672,7 +672,7 @@
           <End Role="Material" Type="Self.Material" Multiplicity="*" />
           <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="AbzanovGlazaEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AgentDB" EntityType="Self.AgentDB" />
           <EntitySet Name="AgentPriorityHistory" EntityType="Self.AgentPriorityHistory" />
           <EntitySet Name="AgentType" EntityType="Self.AgentType" />
@@ -740,7 +740,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище AbzanovGlazaModelContainer" CdmEntityContainer="AbzanovGlazaEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AbzanovGlazaModelContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="AgentDB">
             <EntityTypeMapping TypeName="AbzanovGlazaModel.AgentDB">
               <MappingFragment StoreEntitySet="AgentDB">

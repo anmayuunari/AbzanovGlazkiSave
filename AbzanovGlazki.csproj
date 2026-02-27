@@ -187,16 +187,6 @@
     <Resource Include="res\Глазки-save.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AbzanovModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AbzanovModel.Context.cs</LastGenOutput>
-      <DependentUpon>AbzanovModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="AbzanovModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AbzanovModel.edmx</DependentUpon>
-      <LastGenOutput>AbzanovModel.cs</LastGenOutput>
-    </Content>
     <Resource Include="agents\agent_1.png" />
     <Resource Include="agents\agent_10.png" />
     <Resource Include="agents\agent_100.png" />
@@ -331,6 +321,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AbzanovModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AbzanovModel.edmx</DependentUpon>
+      <LastGenOutput>AbzanovModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="AbzanovModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AbzanovModel.edmx</DependentUpon>
+      <LastGenOutput>AbzanovModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
