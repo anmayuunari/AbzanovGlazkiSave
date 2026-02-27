@@ -57,8 +57,8 @@
         <ListView Name="AgentListView" Grid.Row="2" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="Black" BorderThickness="1" Name="BorderAgent">
-                        <Grid Margin="5" >
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <Grid Background="{Binding BackgroundStyle}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="*"/>

@@ -103,6 +103,8 @@ namespace AbzanovGlazki
                 currentAgents = currentAgents.Where(p => p.AgentTypeID == ComboTypeFilt.SelectedIndex).ToList();
             }
 
+            
+
             /*if(ComboTypeFilt.SelectedIndex == 1)
             {
                 currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("МФО")).ToList();

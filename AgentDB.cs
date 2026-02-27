@@ -93,6 +93,19 @@ namespace AbzanovGlazki
             }
         }
 
+        public string BackgroundStyle
+        {
+            get
+            {
+                if (Discount >= 25)
+                {
+                    return "LightGreen";
+                }
+                else
+                    return "White";
+            }
+        }
+
         public virtual AgentType AgentType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AgentPriorityHistory> AgentPriorityHistory { get; set; }
