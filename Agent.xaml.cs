@@ -64,6 +64,7 @@ namespace AbzanovGlazki
         {
             var currentAgents = AbzanovGlazaEntities.GetContext().AgentDB.ToList();
 
+
             if (ComboTypeSort.SelectedIndex == 0 && RButtonUp.IsChecked.Value)
             {
                 AgentListView.ItemsSource = currentAgents.OrderBy(p => p.Title).ToList();
@@ -97,7 +98,12 @@ namespace AbzanovGlazki
                 currentAgents = currentAgents.OrderByDescending(p => p.Priority).ToList();
             }
 
-            if(ComboTypeFilt.SelectedIndex == 1)
+            if (ComboTypeFilt.SelectedIndex >= 1 && ComboTypeFilt.SelectedIndex <= 6)
+            {
+                currentAgents = currentAgents.Where(p => p.AgentTypeID == ComboTypeFilt.SelectedIndex).ToList();
+            }
+
+            /*if(ComboTypeFilt.SelectedIndex == 1)
             {
                 currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("МФО")).ToList();
             }
@@ -120,9 +126,9 @@ namespace AbzanovGlazki
             if (ComboTypeFilt.SelectedIndex == 6)
             {
                 currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("ПАО")).ToList();
-            }
+            }*/
 
-            currentAgents = currentAgents.Where(p => p.Title.ToLower().Contains(TBoxSearch.Text.ToLower()) || p.Email.ToLower().Contains(TBoxSearch.Text.ToLower()) || p.PhoneSearch.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            currentAgents = currentAgents.Where(p => p.Title.ToLower().Contains(TBoxSearch.Text.ToLower()) || p.Email.ToLower().Contains(TBoxSearch.Text.ToLower()) || p.PhoneSearch.Contains(TBoxSearch.Text)).ToList();
 
             AgentListView.ItemsSource = currentAgents;
             TableList = currentAgents;

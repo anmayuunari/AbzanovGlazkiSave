@@ -63,21 +63,23 @@ namespace AbzanovGlazki
                 return ProductSale.Sum(ps => ps.ProductCount);
             }
             
-        }
+        }   
 
         public int Discount
         {
             get
             {
-                if (CountProduct >= 10 && CountProduct < 50)
+                var FinalCost = ProductSale.Sum(ps => ps.ProductCount * ps.ProductCost);
+
+                if (FinalCost >= 0 && FinalCost < 10000)
+                    return 0;
+                if (FinalCost >= 10000 && FinalCost < 50000)
                     return 5;
-                if (CountProduct >= 50 && CountProduct < 100)
+                if (FinalCost >= 50000 && FinalCost < 150000)
                     return 10;
-                if (CountProduct >= 100 && CountProduct < 150)
-                    return 15;
-                if (CountProduct >= 150 && CountProduct < 200)
+                if (FinalCost >= 150000 && FinalCost < 500000)
                     return 20;
-                if (CountProduct >= 200 && CountProduct < 250)
+                if (FinalCost >= 500000)
                     return 25;
                 else return 0;
             }
@@ -87,7 +89,7 @@ namespace AbzanovGlazki
         {
             get
             {
-                return Phone.Replace("+", "").Replace("-", "").Replace("(", "").Replace(")", "");
+                return Phone.Replace("+", "").Replace("-", "").Replace("(", "").Replace(")", "").Replace(" ", "");
             }
         }
 

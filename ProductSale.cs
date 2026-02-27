@@ -19,6 +19,14 @@ namespace AbzanovGlazki
         public int ProductID { get; set; }
         public System.DateTime SaleDate { get; set; }
         public int ProductCount { get; set; }
+
+        public decimal ProductCost
+        {
+            get
+            {
+                return Product.MinCostForAgent;
+            }
+        }
     
         public virtual AgentDB AgentDB { get; set; }
         public virtual Product Product { get; set; }
