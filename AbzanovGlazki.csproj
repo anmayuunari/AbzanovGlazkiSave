@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -69,6 +69,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AbzanovModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="AddProductHistory.xaml.cs">
+      <DependentUpon>AddProductHistory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AgentDB.cs">
       <DependentUpon>AbzanovModel.tt</DependentUpon>
     </Compile>
@@ -87,11 +90,17 @@
     <Compile Include="MaterialType.cs">
       <DependentUpon>AbzanovModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PiorityChange.xaml.cs">
+      <DependentUpon>PiorityChange.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>AbzanovModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductCostHistory.cs">
       <DependentUpon>AbzanovModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductHistory.xaml.cs">
+      <DependentUpon>ProductHistory.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProductMaterial.cs">
       <DependentUpon>AbzanovModel.tt</DependentUpon>
@@ -109,6 +118,10 @@
       <DependentUpon>AbzanovModel.tt</DependentUpon>
     </Compile>
     <Page Include="AddEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddProductHistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -144,6 +157,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PiorityChange.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manager.cs" />
@@ -333,6 +354,7 @@
       <DependentUpon>AbzanovModel.edmx</DependentUpon>
       <LastGenOutput>AbzanovModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="agents\2-Мини-майялино.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

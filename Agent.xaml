@@ -49,12 +49,16 @@
         </WrapPanel>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5" HorizontalAlignment="Center">
-            <RadioButton Content="По возрастанию" GroupName="Sort" Width="300" FontSize="20" Checked="RButtonUp_Checked" Name="RButtonUp"/>
-            <RadioButton Content="По убыванию" GroupName="Sort" Width="300" FontSize="20" Checked="RButtonDown_Checked" Name="RButtonDown"/>
+            <RadioButton Content="По возрастанию" GroupName="Sort" Width="250" FontSize="20" Checked="RButtonUp_Checked" Name="RButtonUp"/>
+            <RadioButton Content="По убыванию" GroupName="Sort" Width="250" FontSize="20" Checked="RButtonDown_Checked" Name="RButtonDown"/>
         </StackPanel>
 
- 
-        <ListView Name="AgentListView" Grid.Row="2" HorizontalContentAlignment="Stretch">
+        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Right" Margin="5, 0">
+            <Button Content="Добавить агента" Name="AddButton" Click="AddButton_Click"/>
+            <Button Content="Изменить приоритет" Name="PriorityAgentChangeButton" Visibility="Hidden" Click="PriorityAgentChangeButton_Click" Width="250"/>
+        </StackPanel>
+
+        <ListView Name="AgentListView" Grid.Row="2" HorizontalContentAlignment="Stretch" SelectionChanged="AgentListView_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1">
@@ -95,6 +99,11 @@
                                     </Binding>
                                 </Image.Source>
                             </Image>
+
+                            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right">
+                                <Button Content="Редактировать" Name="EditButton" Click="EditButton_Click"  Width="110"/>
+                                <Button Content="Удалить" Name="DeleteButton" Click="DeleteButton_Click" Width="90" Margin="3"/>
+                            </StackPanel>
 
                         </Grid>
                     </Border>

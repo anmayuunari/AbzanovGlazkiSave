@@ -1,0 +1,24 @@
+﻿<Window x:Class="AbzanovGlazki.PiorityChange"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AbzanovGlazki"
+        mc:Ignorable="d"
+        Title="PiorityChange" Height="450" Width="800" FontFamily="Century Gothic" Icon="res/Глазки-save.ico">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Text="Приортитет:" Grid.Column="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox Grid.Column="1" Name="PriorityTextBox" Width="100" Height="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <StackPanel Orientation="Vertical" Grid.Column="2" VerticalAlignment="Center">
+            <Button Content="Назад" Name="PriorityBackButton" Click="PriorityBackButton_Click"/>
+            <Button Content="Изменить" Name="PriorityChangeButton" Click="PriorityChangeButton_Click"/>
+        </StackPanel>
+        
+    </Grid>
+</Window>

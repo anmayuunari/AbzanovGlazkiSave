@@ -9,6 +9,69 @@
       Title="AddEditPage" FontFamily="Century Gothic">
 
     <Grid>
-        <TextBlock Text="Привет" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="ID" FontSize="15" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5" Name="TextBlockID"/>
+        <TextBlock Text="Название" FontSize="15" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+        
+        <TextBlock Text="Тип" FontSize="15" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+        <TextBlock Text="Адрес" FontSize="15" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+        <TextBlock Text="ИНН" FontSize="15" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+        <TextBlock Text="КПП" FontSize="15" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+        <TextBlock Text="Директор" FontSize="15" Grid.Column="0" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+        <TextBlock Text="Телефон" FontSize="15" Grid.Column="0" Grid.Row="7" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+        <TextBlock Text="Email" FontSize="15" Grid.Column="0" Grid.Row="8" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+        <TextBlock Text="Приоритет" FontSize="15" Grid.Column="0" Grid.Row="9" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5"/>
+
+        <TextBlock Text="Логотип" FontSize="15" Grid.Column="2" Grid.Row="0" Margin="5" VerticalAlignment="Center"/>
+
+        <Image Name="AgentLogo" Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" HorizontalAlignment="Left">
+            <Image.Source>
+                <Binding Path="Logo"/>
+            </Image.Source>
+        </Image>
+
+        <Label Grid.Column="1" Grid.Row="0" Height="30" Content="{Binding ID}" Width="200" HorizontalAlignment="Left" FontSize="10" Visibility="Visible" Name="LabelID"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Height="30" Text="{Binding Title}" Width="200" HorizontalAlignment="Left"/>
+        <ComboBox Name="ComboTypeAddEdit" SelectionChanged="ComboTypeAddEdit_SelectionChanged" FontSize="15" Width="200" Grid.Column="1" Grid.Row="2" Height="30" HorizontalAlignment="Left">
+            <TextBlock Text="МФО"/>
+            <TextBlock Text="ООО"/>
+            <TextBlock Text="ЗАО"/>
+            <TextBlock Text="МКК"/>
+            <TextBlock Text="ОАО"/>
+            <TextBlock Text="ПАО"/>
+        </ComboBox>
+        <TextBox Grid.Column="1" Grid.Row="3" Height="30" Text="{Binding Adress}" Width="200" HorizontalAlignment="Left"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Height="30" Text="{Binding INN}" Width="200" HorizontalAlignment="Left"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Height="30" Text="{Binding KPP}" Width="200" HorizontalAlignment="Left"/>
+        <TextBox Grid.Column="1" Grid.Row="6" Height="30" Text="{Binding DirectorName}" Width="200" HorizontalAlignment="Left"/>
+        <TextBox Grid.Column="1" Grid.Row="7" Height="30" Text="{Binding Phone}" Width="200" HorizontalAlignment="Left"/>
+        <TextBox Grid.Column="1" Grid.Row="8" Height="30" Text="{Binding Email}" Width="200" HorizontalAlignment="Left"/>
+        <TextBox Grid.Column="1" Grid.Row="9" Height="30" Text="{Binding Priority}" Width="200" HorizontalAlignment="Left"/>
+
+        <Button Content="Изменить логотип" Name="ChangeLogoButton" Grid.Column="2" Grid.Row="4" Click="ChangeLogoButton_Click"/>
+
+        <Button Content="История реализации" Name="ProductHistoryButton" Grid.Row="10" Grid.Column="0" Click="ProductHistoryButton_Click"/>
+
+        <Button Content="Сохранить" Name="SaveButton" Grid.Row="10" Grid.Column="1" Click="SaveButton_Click"/>
+
+        <Button Content="Удалить" Name="DeleteEditButton" Grid.Row="10" Grid.Column="2" Click="DeleteEditButton_Click"/>
     </Grid>
 </Page>

@@ -26,6 +26,8 @@ namespace AbzanovGlazki
         int CountPage;
         int CurrentPage = 0;
 
+        //bool PriorityFlag = true;
+
         List<AgentDB> CurrentPageList = new List<AgentDB>();
         List<AgentDB> TableList;
         public Agent()
@@ -42,10 +44,7 @@ namespace AbzanovGlazki
             UpdateAgents();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Manager.MainFrame.Navigate(new AddEditPage());
-        }
+        
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -104,31 +103,7 @@ namespace AbzanovGlazki
             }
 
             
-
-            /*if(ComboTypeFilt.SelectedIndex == 1)
-            {
-                currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("МФО")).ToList();
-            }
-            if (ComboTypeFilt.SelectedIndex == 2)
-            {
-                currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("ООО")).ToList();
-            }
-            if (ComboTypeFilt.SelectedIndex == 3)
-            {
-                currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("ЗАО")).ToList();
-            }
-            if (ComboTypeFilt.SelectedIndex == 4)
-            {
-                currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("МКК")).ToList();
-            }
-            if (ComboTypeFilt.SelectedIndex == 5)
-            {
-                currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("ОАО")).ToList();
-            }
-            if (ComboTypeFilt.SelectedIndex == 6)
-            {
-                currentAgents = currentAgents.Where(p => p.AgentTypeFull.Contains("ПАО")).ToList();
-            }*/
+           
 
             currentAgents = currentAgents.Where(p => p.Title.ToLower().Contains(TBoxSearch.Text.ToLower()) || p.Email.ToLower().Contains(TBoxSearch.Text.ToLower()) || p.PhoneSearch.Contains(TBoxSearch.Text)).ToList();
 
@@ -137,8 +112,6 @@ namespace AbzanovGlazki
 
             ChangePage(0, 0);
             
-
-            //AgentListView.ItemsSource = currentAgents.ToList();
         }
 
         private void ChangePage(int direction, int? selectedPage)
@@ -244,6 +217,82 @@ namespace AbzanovGlazki
         private void PageListBox_MouseUp(object sender, MouseButtonEventArgs e)
         {
             ChangePage(0, Convert.ToInt32(PageListBox.SelectedItem.ToString()) - 1);
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (AgentListView.SelectedItem is AgentDB selectedAgent)
+            {
+                Manager.MainFrame.Navigate(new AddEditPage(selectedAgent));
+            }
+            else
+            {
+                MessageBox.Show("Выберите агента для редактирования", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var currentAgent = (sender as Button).DataContext as AgentDB;
+
+            var currentProductSale = AbzanovGlazaEntities.GetContext().AgentDB.ToList();
+
+            currentProductSale = currentProductSale.Where(p => p.ID == currentAgent.ID).ToList();
+
+            if (currentProductSale.Count != 0)
+                MessageBox.Show("Невозможно");
+            else
+            {
+                if (MessageBox.Show("Точно?", "Точно преточно?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        AbzanovGlazaEntities.GetContext().AgentDB.Remove(currentAgent);
+                        AbzanovGlazaEntities.GetContext().SaveChanges();
+
+                        AgentListView.ItemsSource = AbzanovGlazaEntities.GetContext().AgentDB.ToList();
+
+                        UpdateAgents();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
+                }
+            }
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new AddEditPage(null));
+        }
+
+        private void AgentListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (AgentListView.SelectedItems.Count >= 2)
+            {
+                PriorityAgentChangeButton.Visibility = Visibility.Visible;
+            }
+            else PriorityAgentChangeButton.Visibility = Visibility.Hidden;
+        }
+
+        private void PriorityAgentChangeButton_Click(object sender, RoutedEventArgs e)
+        {
+            //if (AgentListView.SelectedItems is AgentDB selectedAgents
+
+            var selectedAgents = AgentListView.SelectedItems.Cast<AgentDB>().ToList();
+            PiorityChange priorityWindow = new PiorityChange(selectedAgents);
+
+            priorityWindow.PriorityChangeEvent += PriorityChangeEventFunc;
+
+            bool? result = priorityWindow.ShowDialog();
+
+        }
+
+        private void PriorityChangeEventFunc()
+        {
+            //UpdateAgents();
+            ChangePage(0, CurrentPage);
         }
     }
 }

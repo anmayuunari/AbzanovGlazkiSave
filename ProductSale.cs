@@ -28,6 +28,14 @@ namespace AbzanovGlazki
             }
         }
 
+        public string ProductFullName
+        {
+            get
+            {
+                return Product.Title;
+            }
+        }
+
         public virtual AgentDB AgentDB { get; set; }
         public virtual Product Product { get; set; }
     }
